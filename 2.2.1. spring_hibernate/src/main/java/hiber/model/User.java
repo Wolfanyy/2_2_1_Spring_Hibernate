@@ -19,10 +19,6 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_id")
-    private Car car;
-
     public User() {
     }
 
@@ -31,6 +27,9 @@ public class User {
         this.lastName = lastName;
         this.email = email;
     }
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Car car;
 
     public Long getId() {
         return id;
