@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class Car {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "model")
@@ -18,15 +19,9 @@ public class Car {
     public Car() {
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @MapsId
-    private User user;
-
-    public Car(String model, int series, User user) {
+    public Car(String model, int series) {
         this.model = model;
         this.series = series;
-        this.user = user;
     }
 
     public Long getId() {
@@ -51,13 +46,5 @@ public class Car {
 
     public void setSeries(int series) {
         this.series = series;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

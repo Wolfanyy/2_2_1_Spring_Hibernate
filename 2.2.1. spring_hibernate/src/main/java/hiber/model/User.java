@@ -28,7 +28,8 @@ public class User {
         this.email = email;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_id", unique = true)
     private Car car;
 
     public Long getId() {
